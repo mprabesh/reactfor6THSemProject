@@ -1,0 +1,7 @@
+here the images are uploaded .
+
+HomeImage.jpd
+icon.jpg
+login.png
+
+these are the image name
