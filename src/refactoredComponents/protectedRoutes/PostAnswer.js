@@ -30,7 +30,7 @@ function Answer(bang) {
     e.preventDefault();
     console.log(values);
     axios
-      .post(`http://localhost:1234/postAnswer`, { values })
+      .post(`/postAnswer`, { values })
       .then((res) => {
         console.log(res);
       })
