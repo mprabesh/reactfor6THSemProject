@@ -7,7 +7,7 @@ function Profile() {
   const d = localStorage.getItem("Name");
   const [objectValue, setobjectValue] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:1234/specific/${d}`).then((res) => {
+    axios.get(`/specific/${d}`).then((res) => {
       setobjectValue(res.data);
     });
   });
