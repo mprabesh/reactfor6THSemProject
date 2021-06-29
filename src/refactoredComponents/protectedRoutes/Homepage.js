@@ -23,7 +23,7 @@ function BaseContainer() {
   const [objectValue, setobjectValue] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:1234/getPostData`).then((res) => {
+    axios.get(`/getPostData`).then((res) => {
       setobjectValue(res.data);
     });
   });
