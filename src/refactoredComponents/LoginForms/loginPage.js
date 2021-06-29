@@ -5,6 +5,7 @@ import axios from "axios";
 
 function LoginForm() {
   let history = useHistory();
+  // const [show, setshowVal] = useState(false);
   const [values, setValues] = useState({ email: "", password: "" });
   const handleChange = (e) => {
     const value = e.target.value;
@@ -15,21 +16,24 @@ function LoginForm() {
     // console.log(values);
     e.preventDefault();
     axios
-      .post(`http://localhost:1234/login`, { values })
+      .post(`http://localhost:1234/authenticate`, { values })
       .then((res) => {
         console.log(res.data);
-        const damn = res.data.isAuth;
-        localStorage.setItem("status", damn);
         localStorage.setItem("Name", res.data.Name);
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("UID", res.data.UID);
+        sessionStorage.setItem("sessionValid", res.data.sessionValid);
+        sessionStorage.setItem("accessToken", res.data.accessToken);
+        sessionStorage.setItem("refreshToken", res.data.refreshToken);
+        sessionStorage.setItem("isAdmin", res.data.isAdmin);
 
         const d = localStorage.getItem("status");
-        if (d) {
+        if (res.data.sessionValid) {
           history.push("./home");
         }
       })
       .catch((err) => {
         console.log(err);
+        // setshowVal(true);
       });
   };
 
@@ -55,6 +59,10 @@ function LoginForm() {
           Log In
         </button>
       </form>
+      <div className="error-texts">
+        {" "}
+        {/* {show ? <p className="text-danger pt-2">Wrong Credentials</p> : null} */}
+      </div>
     </div>
   );
 }
